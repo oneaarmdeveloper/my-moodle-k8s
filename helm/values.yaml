@@ -1,0 +1,40 @@
+# helm/values.yaml
+moodleUsername: admin
+moodlePassword: "Stephen1996@"
+moodleEmail: anselmicheku@gmail.com
+
+persistence:
+  enabled: true
+  size: 5Gi
+
+mariadb:
+  auth:
+    rootPassword: "Stephen1996@"
+    password: "Stephen1996@"
+    username: bn_moodle
+    database: bitnami_moodle
+  primary:
+    persistence:
+      enabled: true
+      size: 5Gi
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/mariadb
+    tag: 11.4.2-debian-12-r2
+
+image:
+  registry: docker.io
+  repository: bitnamilegacy/moodle
+  tag: 5.0.1-debian-12-r0
+
+global:
+  security:
+    allowInsecureImages: true
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: true
+  hostname: moodle.local
+  tls: false
